@@ -6,12 +6,15 @@
     <title>OS1 Developer Hub</title>
     <style>
         :root {
-            --primary: #3b82f6;
-            --primary-dark: #2563eb;
-            --secondary: #10b981;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --gray: #e2e8f0;
+            /* Color scheme matching getos1.com */
+            --primary-blue: #234596;      /* Primary blue from OS1 logo */
+            --primary-dark: #1a3478;      /* Darker blue for hover states */
+            --accent-green: #00c389;      /* Accent green for highlights */
+            --text-dark: #333333;         /* Main text color */
+            --text-light: #6b7280;        /* Secondary text color */
+            --bg-light: #ffffff;          /* Main background */
+            --bg-alt: #f3f7ff;            /* Alternate section background */
+            --border-light: #e5e7eb;      /* Light border color */
         }
 
         * {
@@ -22,8 +25,8 @@
         }
 
         body {
-            background-color: var(--light);
-            color: var(--dark);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.5;
         }
 
@@ -35,8 +38,8 @@
 
         /* Header & Navigation */
         header {
-            background-color: white;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            background-color: var(--bg-light);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             position: sticky;
             top: 0;
             z-index: 10;
@@ -54,7 +57,7 @@
             align-items: center;
             font-weight: 700;
             font-size: 1.5rem;
-            color: var(--primary);
+            color: var(--primary-blue);
         }
 
         .logo-icon {
@@ -69,34 +72,66 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: var(--text-dark);
             font-weight: 500;
             transition: color 0.2s;
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--primary-blue);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-blue);
+            position: relative;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-green);
         }
 
         .btn-primary {
-            background-color: var(--primary);
+            background-color: var(--primary-blue);
             color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 0.25rem;
+            padding: 0.75rem 1.75rem;
+            border-radius: 0.375rem;
             text-decoration: none;
             font-weight: 500;
             transition: background-color 0.2s;
+            display: inline-block;
         }
 
         .btn-primary:hover {
             background-color: var(--primary-dark);
         }
 
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-blue);
+            padding: 0.75rem 1.75rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid var(--primary-blue);
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
         /* Hero Section */
         .hero {
             padding: 5rem 0;
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-            color: white;
+            background-color: var(--bg-alt);
+            color: var(--text-dark);
             text-align: center;
         }
 
@@ -109,12 +144,13 @@
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 1rem;
+            color: var(--primary-blue);
         }
 
         .hero p {
             font-size: 1.25rem;
             margin-bottom: 2rem;
-            opacity: 0.9;
+            color: var(--text-light);
         }
 
         .hero-buttons {
@@ -123,18 +159,11 @@
             justify-content: center;
         }
 
-        .btn-secondary {
-            background-color: white;
-            color: var(--primary);
-            padding: 0.5rem 1.5rem;
-            border-radius: 0.25rem;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.2s;
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--gray);
+        .green-accent {
+            height: 3px;
+            width: 60px;
+            background-color: var(--accent-green);
+            margin: 0 auto 1.5rem;
         }
 
         /* Section Styling */
@@ -151,10 +180,11 @@
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
+            color: var(--primary-blue);
         }
 
         .section-title p {
-            color: #64748b;
+            color: var(--text-light);
             max-width: 600px;
             margin: 0 auto;
         }
@@ -175,12 +205,13 @@
 
         /* Cards */
         .card {
-            background-color: white;
+            background-color: var(--bg-light);
             border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             padding: 1.5rem;
             transition: transform 0.2s, box-shadow 0.2s;
             height: 100%;
+            border: 1px solid var(--border-light);
         }
 
         .card:hover {
@@ -198,21 +229,22 @@
             font-size: 1.25rem;
             margin-bottom: 0.5rem;
             font-weight: 600;
+            color: var(--primary-blue);
         }
 
         .card p {
-            color: #64748b;
+            color: var(--text-light);
             font-size: 0.95rem;
         }
 
         /* Features Section */
         .alternating-bg {
-            background-color: #f1f5f9;
+            background-color: var(--bg-alt);
         }
 
         /* Footer */
         footer {
-            background-color: var(--dark);
+            background-color: var(--primary-blue);
             color: white;
             padding: 3rem 0;
         }
@@ -238,7 +270,7 @@
         }
 
         .footer-column a {
-            color: #cbd5e1;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: color 0.2s;
         }
@@ -251,8 +283,8 @@
             text-align: center;
             padding-top: 2rem;
             margin-top: 2rem;
-            border-top: 1px solid #334155;
-            color: #94a3b8;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.6);
         }
 
         /* Responsive Design */
@@ -306,11 +338,11 @@
                     OS1 Dev
                 </div>
                 <div class="nav-links">
-                    <a href="#">Documentation</a>
+                    <a href="#" class="active">Documentation</a>
                     <a href="#">Community</a>
                     <a href="#">Support</a>
                 </div>
-                <a href="#" class="btn-primary">Sign In</a>
+                <a href="#" class="btn-outline">Request Demo</a>
             </nav>
         </div>
     </header>
@@ -320,10 +352,10 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Welcome to OS1 Developer Hub</h1>
+                <div class="green-accent"></div>
                 <p>Learn how to build powerful, scalable applications using our platform and tools.</p>
                 <div class="hero-buttons">
                     <a href="#" class="btn-primary">Get Started</a>
-                    <a href="#" class="btn-secondary">View Docs</a>
                 </div>
             </div>
         </div>
@@ -334,6 +366,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Find Your Path</h2>
+                <div class="green-accent"></div>
                 <p>We've tailored resources for different developer roles to help you succeed.</p>
             </div>
             <div class="card-grid user-type-grid">
@@ -361,6 +394,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Quick Access Resources</h2>
+                <div class="green-accent"></div>
                 <p>Everything you need to build and deploy on our platform.</p>
             </div>
             <div class="card-grid resources-grid">
@@ -450,7 +484,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 OS1 Developer Hub. All rights reserved.</p>
+                <p>&copy; 2025 OS1 by Delhivery. All rights reserved.</p>
             </div>
         </div>
     </footer>
